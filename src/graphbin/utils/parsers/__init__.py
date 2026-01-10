@@ -34,15 +34,11 @@ def get_initial_bin_count(contig_bins_file, delimiter):
         bins_list.sort()
 
         n_bins = len(bins_list)
-        logger.info(
-            "Number of bins available in the initial binning result: " + str(n_bins)
-        )
+        logger.info("Number of bins available in the initial binning result: " + str(n_bins))
 
     except BaseException as err:
         logger.error(f"Unexpected {err}")
-        logger.error(
-            "Please make sure that the correct path to the initial binning result file is provided and it is having the correct format."
-        )
+        logger.error("Please make sure that the correct path to the initial binning result file is provided and it is having the correct format.")
         logger.info("Exiting GraphBin... Bye...!")
         sys.exit(1)
 

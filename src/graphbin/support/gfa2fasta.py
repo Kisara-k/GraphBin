@@ -45,9 +45,7 @@ ap.add_argument(
     help="type of the assembler (Flye or Miniasm)",
 )
 ap.add_argument("--output", required=True, type=str, help="path to the output folder")
-ap.add_argument(
-    "--prefix", required=False, type=str, default="", help="prefix for the output file"
-)
+ap.add_argument("--prefix", required=False, type=str, default="", help="prefix for the output file")
 
 args = vars(ap.parse_args())
 

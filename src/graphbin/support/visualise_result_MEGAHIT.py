@@ -63,9 +63,7 @@ ap.add_argument(
     type=str,
     help="path to the file containing the final GraphBin binning result",
 )
-ap.add_argument(
-    "--graph", required=True, type=str, help="path to the assembly graph file"
-)
+ap.add_argument("--graph", required=True, type=str, help="path to the assembly graph file")
 ap.add_argument("--contigs", required=True, type=str, help="path to the contigs file")
 ap.add_argument("--output", required=True, type=str, help="path to the output folder")
 ap.add_argument(
@@ -103,15 +101,9 @@ ap.add_argument(
     default=2000,
     help="height of the image in pixels",
 )
-ap.add_argument(
-    "--vsize", required=False, type=int, default=50, help="size of the vertices"
-)
-ap.add_argument(
-    "--lsize", required=False, type=int, default=8, help="size of the vertex labels"
-)
-ap.add_argument(
-    "--margin", required=False, type=int, default=50, help="margin of the figure"
-)
+ap.add_argument("--vsize", required=False, type=int, default=50, help="size of the vertices")
+ap.add_argument("--lsize", required=False, type=int, default=8, help="size of the vertex labels")
+ap.add_argument("--margin", required=False, type=int, default=50, help="margin of the figure")
 ap.add_argument("--dpi", required=False, type=int, default=300, help="dpi value")
 
 args = vars(ap.parse_args())
@@ -132,9 +124,7 @@ margin = args["margin"]
 image_type = args["type"]
 
 print("\nWelcome to binning result visualiser of GraphBin!")
-print(
-    "This version of the visualiser makes use of the assembly graph produced by MEGAHIT which is based on the de Bruijn graph approach.\n"
-)
+print("This version of the visualiser makes use of the assembly graph produced by MEGAHIT which is based on the de Bruijn graph approach.\n")
 
 
 # Validate prefix
@@ -199,9 +189,7 @@ try:
     n_bins = len(bins_list)
     print("Number of bins available in initial binning result:", n_bins)
 except:
-    print(
-        "\nPlease make sure that the correct path to the initial binning result file is provided and it is having the correct format"
-    )
+    print("\nPlease make sure that the correct path to the initial binning result file is provided and it is having the correct format")
     print("Exiting visualiseResult...\nBye...!\n")
     sys.exit(1)
 
@@ -246,16 +234,12 @@ try:
                 start_1 = "NODE_"
                 end_1 = "_length"
 
-                link1 = int(
-                    re.search("%s(.*)%s" % (start_1, end_1), strings[1]).group(1)
-                )
+                link1 = int(re.search("%s(.*)%s" % (start_1, end_1), strings[1]).group(1))
 
                 start_2 = "NODE_"
                 end_2 = "_length"
 
-                link2 = int(
-                    re.search("%s(.*)%s" % (start_2, end_2), strings[3]).group(1)
-                )
+                link2 = int(re.search("%s(.*)%s" % (start_2, end_2), strings[3]).group(1))
 
                 link.append(link1)
                 link.append(link2)
@@ -267,9 +251,7 @@ try:
                 start = "NODE_"
                 end = "_length"
 
-                contig_num = int(
-                    re.search("%s(.*)%s" % (start, end), strings[1]).group(1)
-                )
+                contig_num = int(re.search("%s(.*)%s" % (start, end), strings[1]).group(1))
 
                 my_map[node_count] = int(contig_num)
 
@@ -318,9 +300,7 @@ try:
     assembly_graph.simplify(multiple=True, loops=False, combine_edges=None)
 
 except:
-    print(
-        "\nPlease make sure that the correct path to the assembly graph file is provided."
-    )
+    print("\nPlease make sure that the correct path to the assembly graph file is provided.")
     print("Exiting visualiseResult...\nBye...!\n")
     sys.exit(1)
 
@@ -341,9 +321,7 @@ try:
             bins[bin_num].append(contig_num)
 
 except:
-    print(
-        "\nPlease make sure that the correct path to the binning result file is provided and it is having the correct format"
-    )
+    print("\nPlease make sure that the correct path to the binning result file is provided and it is having the correct format")
     print("Exiting visualiseResult...\nBye...!\n")
     sys.exit(1)
 
@@ -470,9 +448,7 @@ try:
             bins[bin_num].append(contig_num)
 
 except:
-    print(
-        "\nPlease make sure that the correct path to the final binning result file is provided and it is having the correct format"
-    )
+    print("\nPlease make sure that the correct path to the final binning result file is provided and it is having the correct format")
     print("Exiting visualiseResult...\nBye...!\n")
     sys.exit(1)
 
@@ -480,13 +456,9 @@ except:
 # Visualise the final assembly graph
 # ------------------------------------
 
-print(
-    "\nDrawing and saving the assembly graph with the final GraphBin binning result..."
-)
+print("\nDrawing and saving the assembly graph with the final GraphBin binning result...")
 
-final_out_fig_name = (
-    output_path + prefix + "final_GraphBin_binning_result." + image_type
-)
+final_out_fig_name = output_path + prefix + "final_GraphBin_binning_result." + image_type
 
 node_colours = []
 

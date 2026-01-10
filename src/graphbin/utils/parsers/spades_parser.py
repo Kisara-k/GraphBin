@@ -28,9 +28,7 @@ __status__ = "Production"
 logger = logging.getLogger("GraphBin %s" % __version__)
 
 
-def get_initial_binning_result(
-    n_bins, bins_list, contig_bins_file, contigs_map_rev, delimiter
-):
+def get_initial_binning_result(n_bins, bins_list, contig_bins_file, contigs_map_rev, delimiter):
     logger.info("Obtaining the initial binning result")
 
     bins = [[] for x in range(n_bins)]
@@ -41,18 +39,14 @@ def get_initial_binning_result(
             for row in readCSV:
                 start = "NODE_"
                 end = "_length_"
-                contig_num = contigs_map_rev[
-                    int(re.search("%s(.*)%s" % (start, end), row[0]).group(1))
-                ]
+                contig_num = contigs_map_rev[int(re.search("%s(.*)%s" % (start, end), row[0]).group(1))]
 
                 bin_num = bins_list.index(row[1])
                 bins[bin_num].append(contig_num)
 
     except BaseException as err:
         logger.error(f"Unexpected {err}")
-        logger.error(
-            "Please make sure that you have provided the correct assembler type and the correct path to the binning result file in the correct format."
-        )
+        logger.error("Please make sure that you have provided the correct assembler type and the correct path to the binning result file in the correct format.")
         logger.info("Exiting GraphBin... Bye...!")
         sys.exit(1)
 
@@ -81,9 +75,7 @@ def parse_graph(assembly_graph_file, contig_paths):
 
                 start = "NODE_"
                 end = "_length_"
-                contig_num = str(
-                    int(re.search("%s(.*)%s" % (start, end), name).group(1))
-                )
+                contig_num = str(int(re.search("%s(.*)%s" % (start, end), name).group(1)))
 
                 segments = path.rstrip().split(",")
 
@@ -107,9 +99,7 @@ def parse_graph(assembly_graph_file, contig_paths):
 
     except BaseException as err:
         logger.error(f"Unexpected {err}")
-        logger.error(
-            "Please make sure that the correct path to the contig paths file is provided."
-        )
+        logger.error("Please make sure that the correct path to the contig paths file is provided.")
         logger.info("Exiting GraphBin... Bye...!")
         sys.exit(1)
 
@@ -136,9 +126,7 @@ def parse_graph(assembly_graph_file, contig_paths):
                     f1, f2 = strings[1] + strings[2], strings[3] + strings[4]
                     links_map[f1].add(f2)
                     links_map[f2].add(f1)
-                    links.append(
-                        strings[1] + strings[2] + " " + strings[3] + strings[4]
-                    )
+                    links.append(strings[1] + strings[2] + " " + strings[3] + strings[4])
 
         # Create graph
         assembly_graph = Graph()
@@ -197,9 +185,7 @@ def parse_graph(assembly_graph_file, contig_paths):
 
     except BaseException as err:
         logger.error(f"Unexpected {err}")
-        logger.error(
-            "Please make sure that the correct path to the assembly graph file is provided."
-        )
+        logger.error("Please make sure that the correct path to the assembly graph file is provided.")
         logger.info("Exiting GraphBin... Bye...!")
         sys.exit(1)
 
@@ -235,9 +221,7 @@ def write_output(
     bin_files = {}
 
     for bin_name in set(final_bins.values()):
-        bin_files[bin_name] = open(
-            output_bins_path + prefix + "bin_" + bin_name + ".fasta", "w+"
-        )
+        bin_files[bin_name] = open(output_bins_path + prefix + "bin_" + bin_name + ".fasta", "w+")
 
     for label, seq in MinimalFastaParser(contigs_file):
         contig_num = contig_names_rev[label]
@@ -257,9 +241,7 @@ def write_output(
             output_bins.append(line)
 
     with open(output_file, mode="w") as out_file:
-        output_writer = csv.writer(
-            out_file, delimiter=delimiter, quotechar='"', quoting=csv.QUOTE_MINIMAL
-        )
+        output_writer = csv.writer(out_file, delimiter=delimiter, quotechar='"', quoting=csv.QUOTE_MINIMAL)
         for row in output_bins:
             output_writer.writerow(row)
 
@@ -277,9 +259,7 @@ def write_output(
         unbinned_file = output_path + prefix + "graphbin_unbinned.csv"
 
         with open(unbinned_file, mode="w") as out_file:
-            output_writer = csv.writer(
-                out_file, delimiter=delimiter, quotechar='"', quoting=csv.QUOTE_MINIMAL
-            )
+            output_writer = csv.writer(out_file, delimiter=delimiter, quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
             for row in unbinned_contigs:
                 output_writer.writerow(row)

@@ -2,10 +2,10 @@
 
 """graphbin_Canu.py: Refined binning of metagenomic contigs using Canu assembly graphs.
 
-GraphBin is a metagenomic contig binning tool that makes use of the contig 
-connectivity information from the assembly graph to bin contigs. It utilizes 
-the binning result of an existing binning tool and a label propagation algorithm 
-to correct mis-binned contigs and predict the labels of contigs which are 
+GraphBin is a metagenomic contig binning tool that makes use of the contig
+connectivity information from the assembly graph to bin contigs. It utilizes
+the binning result of an existing binning tool and a label propagation algorithm
+to correct mis-binned contigs and predict the labels of contigs which are
 discarded due to short length.
 
 graphbin_Canu.py makes use of the assembly graphs produced by Canu long read assembler.
@@ -60,9 +60,7 @@ def run(args):
     fileHandler.setFormatter(formatter)
     logger.addHandler(fileHandler)
 
-    logger.info(
-        "This version of GraphBin makes use of the assembly graph produced by Canu which is a long reads assembler based on the OLC approach."
-    )
+    logger.info("This version of GraphBin makes use of the assembly graph produced by Canu which is a long reads assembler based on the OLC approach.")
 
     logger.info(f"Assembly graph file: {assembly_graph_file}")
     logger.info(f"Existing binning output file: {contig_bins_file}")
@@ -85,9 +83,7 @@ def run(args):
     # Get initial binning result
     # ----------------------------
 
-    bins = get_initial_binning_result(
-        n_bins, bins_list, contig_bins_file, contigs_map.inverse, delimiter
-    )
+    bins = get_initial_binning_result(n_bins, bins_list, contig_bins_file, contigs_map.inverse, delimiter)
 
     # Run GraphBin logic
     # -------------------------------------

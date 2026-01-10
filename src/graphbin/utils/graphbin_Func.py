@@ -53,9 +53,7 @@ def getClosestLabelledVertices(graph, node, binned_contigs):
     return labelled
 
 
-def graphbin_main(
-    n_bins, bins, bins_list, assembly_graph, node_count, diff_threshold, max_iteration
-):
+def graphbin_main(n_bins, bins, bins_list, assembly_graph, node_count, diff_threshold, max_iteration):
     logger.info("Determining ambiguous vertices")
 
     remove_by_bin = {}
@@ -114,9 +112,7 @@ def graphbin_main(
                 my_bin = b
 
                 # Get set of closest labelled vertices
-                closest_neighbours = getClosestLabelledVertices(
-                    assembly_graph, i, binned_contigs
-                )
+                closest_neighbours = getClosestLabelledVertices(assembly_graph, i, binned_contigs)
 
                 if len(closest_neighbours) > 0:
                     # Determine whether all the closest labelled vertices have the same label as its own
@@ -131,10 +127,7 @@ def graphbin_main(
 
                     if not neighbours_have_same_label and i not in remove_labels:
                         if my_bin in remove_by_bin:
-                            if (
-                                len(bins[my_bin]) - len(remove_by_bin[my_bin])
-                                >= MIN_BIN_COUNT
-                            ):
+                            if len(bins[my_bin]) - len(remove_by_bin[my_bin]) >= MIN_BIN_COUNT:
                                 remove_labels.append(i)
                                 remove_by_bin[my_bin].append(i)
                         else:
@@ -155,9 +148,7 @@ def graphbin_main(
     # Get vertices which are not isolated and not in components without any labels
     # -----------------------------------------------------------------------------
 
-    logger.info(
-        "Deteremining vertices which are not isolated and not in components without any labels"
-    )
+    logger.info("Deteremining vertices which are not isolated and not in components without any labels")
 
     non_isolated = []
 
@@ -243,9 +234,7 @@ def graphbin_main(
             break
 
     if multiple_bins:
-        logger.error(
-            "Initial binning result consists of contigs belonging to multiple bins. Please make sure that each contig in the initial binning result belongs to only one bin."
-        )
+        logger.error("Initial binning result consists of contigs belonging to multiple bins. Please make sure that each contig in the initial binning result belongs to only one bin.")
         logger.info("Exiting GraphBin... Bye...!")
         sys.exit(1)
 
@@ -255,12 +244,7 @@ def graphbin_main(
 
     lp.load_data_from_mem(data)
 
-    logger.info(
-        "Starting label propagation with eps="
-        + str(diff_threshold)
-        + " and max_iteration="
-        + str(max_iteration)
-    )
+    logger.info("Starting label propagation with eps=" + str(diff_threshold) + " and max_iteration=" + str(max_iteration))
 
     ans = lp.run(diff_threshold, max_iteration, show_log=True, clean_result=False)
 

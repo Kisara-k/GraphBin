@@ -27,9 +27,7 @@ __status__ = "Production"
 logger = logging.getLogger(f"GraphBin {__version__}")
 
 
-def get_initial_binning_result(
-    n_bins, bins_list, contig_bins_file, contig_names_rev, delimiter
-):
+def get_initial_binning_result(n_bins, bins_list, contig_bins_file, contig_names_rev, delimiter):
     logger.info("Obtaining the initial binning result")
 
     bins = [[] for x in range(n_bins)]
@@ -45,9 +43,7 @@ def get_initial_binning_result(
 
     except BaseException as err:
         logger.error(f"Unexpected {err}")
-        logger.error(
-            "Please make sure that you have provided the correct assembler type and the correct path to the binning result file in the correct format."
-        )
+        logger.error("Please make sure that you have provided the correct assembler type and the correct path to the binning result file in the correct format.")
         logger.info("Exiting GraphBin... Bye...!")
         sys.exit(1)
 
@@ -196,9 +192,7 @@ def parse_graph(assembly_graph_file, contig_paths):
 
     except BaseException as err:
         logger.error(f"Unexpected {err}")
-        logger.error(
-            "Please make sure that the correct path to the assembly graph file is provided."
-        )
+        logger.error("Please make sure that the correct path to the assembly graph file is provided.")
         logger.info("Exiting GraphBin... Bye...!")
         sys.exit(1)
 
@@ -225,9 +219,7 @@ def parse_graph(assembly_graph_file, contig_paths):
 
     except BaseException as err:
         logger.error(f"Unexpected {err}")
-        logger.error(
-            "Please make sure that the correct path to the assembly graph file is provided."
-        )
+        logger.error("Please make sure that the correct path to the assembly graph file is provided.")
         logger.info("Exiting GraphBin... Bye...!")
         sys.exit(1)
 
@@ -263,9 +255,7 @@ def write_output(
     bin_files = {}
 
     for bin_name in set(final_bins.values()):
-        bin_files[bin_name] = open(
-            f"{output_bins_path}{prefix}bin_{bin_name}.fasta", "w+"
-        )
+        bin_files[bin_name] = open(f"{output_bins_path}{prefix}bin_{bin_name}.fasta", "w+")
 
     for label, seq in MinimalFastaParser(contigs_file):
         contig_num = contig_names_rev[label]
@@ -289,9 +279,7 @@ def write_output(
         # subprocess.run("awk -F'>' 'NR==FNR{ids[$0]; next} NF>1{f=($2 in ids)} f' " + output_bins_path + "bin_" + str(b+1) + "_ids.txt " + contigs_file + " > " + output_bins_path + "bin_" +str(b+1) +"_seqs.fasta", shell=True)
 
     with open(output_file, mode="w") as out_file:
-        output_writer = csv.writer(
-            out_file, delimiter=delimiter, quotechar='"', quoting=csv.QUOTE_MINIMAL
-        )
+        output_writer = csv.writer(out_file, delimiter=delimiter, quotechar='"', quoting=csv.QUOTE_MINIMAL)
         for row in output_bins:
             output_writer.writerow(row)
 
@@ -309,9 +297,7 @@ def write_output(
         unbinned_file = f"{output_path}{prefix}graphbin_unbinned.csv"
 
         with open(unbinned_file, mode="w") as out_file:
-            output_writer = csv.writer(
-                out_file, delimiter=delimiter, quotechar='"', quoting=csv.QUOTE_MINIMAL
-            )
+            output_writer = csv.writer(out_file, delimiter=delimiter, quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
             for row in unbinned_contigs:
                 output_writer.writerow(row)

@@ -62,7 +62,7 @@ addopts = ["--strict-config", "-ra"]
 testpaths = "tests"
 
 [tool.black]
-line-length = 88
+line-length = 10000
 target-version = ['py37', 'py38', 'py39', 'py310']
 exclude = '''
 /(

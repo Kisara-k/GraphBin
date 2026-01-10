@@ -220,10 +220,7 @@ class LabelProp:
     def show_detail(self, diff, eps, i, max_iter):
         logger.info("Total number of vertices:\t\t" + str(self.vertex_size))
         logger.info("Number of class labels:\t\t" + str(self.label_size))
-        logger.info(
-            "Previous number of unlabeled vertices:\t"
-            + str(self.vertex_size - self.labelled_size)
-        )
+        logger.info("Previous number of unlabeled vertices:\t" + str(self.vertex_size - self.labelled_size))
         logger.info("Previous numebr of labeled vertices:\t" + str(self.labelled_size))
         logger.info("Value of eps parameter:\t\t" + str(eps))
         logger.info("Value of max_iteration parameter:\t" + str(max_iter))

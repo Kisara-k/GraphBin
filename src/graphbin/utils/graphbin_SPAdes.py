@@ -2,10 +2,10 @@
 
 """graphbin_SPAdes.py: Refined binning of metagenomic contigs using SPAdes assembly graphs.
 
-GraphBin is a metagenomic contig binning tool that makes use of the contig 
-connectivity information from the assembly graph to bin contigs. It utilizes 
-the binning result of an existing binning tool and a label propagation algorithm 
-to correct mis-binned contigs and predict the labels of contigs which are 
+GraphBin is a metagenomic contig binning tool that makes use of the contig
+connectivity information from the assembly graph to bin contigs. It utilizes
+the binning result of an existing binning tool and a label propagation algorithm
+to correct mis-binned contigs and predict the labels of contigs which are
 discarded due to short length.
 
 graphbin_SPAdes.py makes use of the assembly graphs produced by SPAdes.
@@ -66,12 +66,8 @@ def run(args):
     fileHandler.setFormatter(formatter)
     logger.addHandler(fileHandler)
 
-    logger.info(
-        "Welcome to GraphBin: Refined Binning of Metagenomic Contigs using Assembly Graphs."
-    )
-    logger.info(
-        "This version of GraphBin makes use of the assembly graph produced by SPAdes which is based on the de Bruijn graph approach."
-    )
+    logger.info("Welcome to GraphBin: Refined Binning of Metagenomic Contigs using Assembly Graphs.")
+    logger.info("This version of GraphBin makes use of the assembly graph produced by SPAdes which is based on the de Bruijn graph approach.")
 
     logger.info("Input arguments:")
     logger.info("Assembly graph file: " + assembly_graph_file)
@@ -91,20 +87,16 @@ def run(args):
     # Get assembly graph
     # --------------------
 
-    assembly_graph, contigs_map, contig_names, node_count = parse_graph(
-        assembly_graph_file, contig_paths
-    )
+    assembly_graph, contigs_map, contig_names, node_count = parse_graph(assembly_graph_file, contig_paths)
 
     # Get initial binning result
     # ----------------------------
 
-    bins = get_initial_binning_result(
-        n_bins, bins_list, contig_bins_file, contigs_map.inverse, delimiter
-    )
+    bins = get_initial_binning_result(n_bins, bins_list, contig_bins_file, contigs_map.inverse, delimiter)
 
     # Run GraphBin logic
     # -------------------------------------
-    
+
     final_bins, remove_labels, non_isolated = graphbin_main(
         n_bins,
         bins,

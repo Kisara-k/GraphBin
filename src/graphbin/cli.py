@@ -58,9 +58,7 @@ class ArgsObj:
 @click.option(
     "--assembler",
     help="name of the assembler used (SPAdes, SGA or MEGAHIT). GraphBin supports Flye, Canu and Miniasm long-read assemblies as well.",
-    type=click.Choice(
-        ["spades", "sga", "megahit", "flye", "canu", "miniasm"], case_sensitive=False
-    ),
+    type=click.Choice(["spades", "sga", "megahit", "flye", "canu", "miniasm"], case_sensitive=False),
     required=True,
 )
 @click.option(
@@ -156,9 +154,7 @@ def main(
     fileHandler.setFormatter(formatter)
     logger.addHandler(fileHandler)
 
-    logger.info(
-        "Welcome to GraphBin: Refined Binning of Metagenomic Contigs using Assembly Graphs."
-    )
+    logger.info("Welcome to GraphBin: Refined Binning of Metagenomic Contigs using Assembly Graphs.")
 
     # Validate options
     # ---------------------------------------------------

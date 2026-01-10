@@ -3,7 +3,7 @@
 """prepResult.py: Format the initial binning result from an existing binning tool.
 
 Format the initial binning result from an existing binning tool in the .csv format
-with contig ID and bin ID. Contigs are numbered starting from 0 and bins are 
+with contig ID and bin ID. Contigs are numbered starting from 0 and bins are
 numbered starting from 1.
 
 """
@@ -49,9 +49,7 @@ ap.add_argument(
 
 ap.add_argument("--output", required=True, type=str, help="path to the output folder")
 
-ap.add_argument(
-    "--prefix", required=False, type=str, default="", help="prefix for the output file"
-)
+ap.add_argument("--prefix", required=False, type=str, default="", help="prefix for the output file")
 
 ap.add_argument(
     "--delimiter",
@@ -78,9 +76,7 @@ if contig_bins_folder[-1:] != "/":
 
 # Throw an error if folder path of binning result does not exist.
 if not os.path.isdir(contig_bins_folder):
-    print(
-        "\nPlease enter a valid path to the folder containing the initial binning result."
-    )
+    print("\nPlease enter a valid path to the folder containing the initial binning result.")
     print("\nExiting prepResult.py...\nBye...!\n")
     sys.exit(1)
 
@@ -91,9 +87,7 @@ files = os.listdir(contig_bins_folder)
 # Check if folder path of binning result is empty.
 # ---------------------------------------------------
 if len(files) == 0:
-    print(
-        "\nFolder containing the initial binning result is empty. Please enter a valid path to the folder containing the initial binning result."
-    )
+    print("\nFolder containing the initial binning result is empty. Please enter a valid path to the folder containing the initial binning result.")
     print("\nExiting prepResult.py...\nBye...!\n")
     sys.exit(1)
 
@@ -106,9 +100,7 @@ for myfile in files:
         isFasta = True
 
 if not isFasta:
-    print(
-        "\nMake sure the folder containing the initial binning result contains fasta files (.fasta, .fa or .fna)."
-    )
+    print("\nMake sure the folder containing the initial binning result contains fasta files (.fasta, .fa or .fna).")
     print("\nExiting prepResult.py...\nBye...!\n")
     sys.exit(1)
 
@@ -170,12 +162,8 @@ for bin_file in files:
 
 print("\nWriting initial binning results to output file")
 
-with open(
-    output_path + prefix + "initial_contig_bins.csv", mode="w"
-) as contig_bins_file:
-    contig_writer = csv.writer(
-        contig_bins_file, delimiter=delimiter, quotechar='"', quoting=csv.QUOTE_MINIMAL
-    )
+with open(output_path + prefix + "initial_contig_bins.csv", mode="w") as contig_bins_file:
+    contig_writer = csv.writer(contig_bins_file, delimiter=delimiter, quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
     for row in contig_bins:
         contig_writer.writerow(row)

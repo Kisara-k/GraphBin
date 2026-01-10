@@ -2,10 +2,10 @@
 
 """graphbin_MEGAHIT.py: Refined binning of metagenomic contigs using MEGAHIT assembly graphs.
 
-GraphBin is a metagenomic contig binning tool that makes use of the contig 
-connectivity information from the assembly graph to bin contigs. It utilizes 
-the binning result of an existing binning tool and a label propagation algorithm 
-to correct mis-binned contigs and predict the labels of contigs which are 
+GraphBin is a metagenomic contig binning tool that makes use of the contig
+connectivity information from the assembly graph to bin contigs. It utilizes
+the binning result of an existing binning tool and a label propagation algorithm
+to correct mis-binned contigs and predict the labels of contigs which are
 discarded due to short length.
 
 graphbin_MEGAHIT.py makes use of the assembly graphs produced by MEGAHIT assembler.
@@ -67,12 +67,8 @@ def run(args):
     fileHandler.setFormatter(formatter)
     logger.addHandler(fileHandler)
 
-    logger.info(
-        "Welcome to GraphBin: Refined Binning of Metagenomic Contigs using Assembly Graphs."
-    )
-    logger.info(
-        "This version of GraphBin makes use of the assembly graph produced by MEGAHIT which is based on the de Bruijn graph approach."
-    )
+    logger.info("Welcome to GraphBin: Refined Binning of Metagenomic Contigs using Assembly Graphs.")
+    logger.info("This version of GraphBin makes use of the assembly graph produced by MEGAHIT which is based on the de Bruijn graph approach.")
 
     logger.info("Assembly graph file: " + assembly_graph_file)
     logger.info("Existing binning output file: " + contig_bins_file)
@@ -95,9 +91,7 @@ def run(args):
     # Get assembly graph
     # --------------------
 
-    assembly_graph, graph_to_contig_map, contigs_map, node_count = parse_graph(
-        assembly_graph_file, original_contigs
-    )
+    assembly_graph, graph_to_contig_map, contigs_map, node_count = parse_graph(assembly_graph_file, original_contigs)
 
     # Get initial binning result
     # ----------------------------
