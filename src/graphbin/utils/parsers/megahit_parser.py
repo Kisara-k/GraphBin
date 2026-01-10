@@ -26,14 +26,7 @@ __status__ = "Production"
 logger = logging.getLogger("GraphBin %s" % __version__)
 
 
-def get_initial_binning_result(
-    n_bins,
-    bins_list,
-    contig_bins_file,
-    contigs_map_rev,
-    graph_to_contig_map_rev,
-    delimiter,
-):
+def get_initial_binning_result(n_bins, bins_list, contig_bins_file, contigs_map_rev, graph_to_contig_map_rev, delimiter):
     logger.info("Obtaining the initial binning result")
 
     bins = [[] for x in range(n_bins)]
@@ -154,20 +147,7 @@ def parse_graph(assembly_graph_file, original_contigs):
     return assembly_graph, graph_to_contig_map, contigs_map, node_count
 
 
-def write_output(
-    output_path,
-    prefix,
-    final_bins,
-    contigs_file,
-    graph_to_contig_map,
-    bins,
-    contigs_map,
-    bins_list,
-    delimiter,
-    node_count,
-    remove_labels,
-    non_isolated,
-):
+def write_output(output_path, prefix, final_bins, contigs_file, graph_to_contig_map, bins, contigs_map, bins_list, delimiter, node_count, remove_labels, non_isolated):
     logger.info("Writing the Final Binning result to file")
 
     output_bins = []

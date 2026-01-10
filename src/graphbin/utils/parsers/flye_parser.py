@@ -228,20 +228,7 @@ def parse_graph(assembly_graph_file, contig_paths):
     return assembly_graph, contig_names, node_count
 
 
-def write_output(
-    output_path,
-    prefix,
-    final_bins,
-    contigs_file,
-    contig_names_rev,
-    bins,
-    contig_names,
-    bins_list,
-    delimiter,
-    node_count,
-    remove_labels,
-    non_isolated,
-):
+def write_output(output_path, prefix, final_bins, contigs_file, contig_names_rev, bins, contig_names, bins_list, delimiter, node_count, remove_labels, non_isolated):
     logger.info("Writing the Final Binning result to file")
 
     output_bins = []
