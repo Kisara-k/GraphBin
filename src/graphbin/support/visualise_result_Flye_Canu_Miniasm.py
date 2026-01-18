@@ -16,7 +16,7 @@ import random
 import subprocess
 import sys
 
-from graphbin.bidirectionalmap.bidirectionalmap import BidirectionalMap
+from graphbin.bidirectionalmap import BidirectionalMap
 from igraph import *
 
 
