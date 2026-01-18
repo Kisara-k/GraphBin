@@ -49,6 +49,12 @@ def run(args):
     # Setup logger
     logger = logging.getLogger(f"GraphBin {__version__}")
     logger.setLevel(logging.DEBUG)
+    logger.propagate = False  # Prevent propagation to parent loggers
+
+    # Clear any existing handlers to avoid duplicate logging
+    if logger.hasHandlers():
+        logger.handlers.clear()
+
     formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
     consoleHeader = logging.StreamHandler()
     consoleHeader.setFormatter(formatter)
